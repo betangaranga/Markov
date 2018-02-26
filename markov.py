@@ -2,7 +2,8 @@ import string,math,itertools,time
 from collections import Counter
 ##OBTENEMOS Y LIMPIAMOS TEXTO
 start_time = time.time()
-file = open(r"C:\Users\PC\Documents\Markov\DCfrances.txt","r")
+#file = open(r"C:\Users\PC\Documents\Markov\DCfrances.txt","r")
+file = open(r"C:\Users\PC\Documents\Markov\aleman.txt","r")
 fLow="aaaæçeeeeiioœuuuaaaæçeeeeiioœuuu"
 fUp="ÀÂÄÆÇÈÉÊËÎÏÔŒÙÛÜàâäæçèéêëîïôœùûü"
 texto_general=file.read()
@@ -12,8 +13,10 @@ texto_minusculas=x.lower()
 translator = str.maketrans('', '', string.punctuation)
 texto_puntuacion=texto_minusculas.translate(translator)
 texto = ''.join([i for i in texto_puntuacion if not i.isdigit()])
+texto.replace('\n','')
 ##DEFINIMOS ABECEDARIO
-ABC=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y' ,'z' ,'ç', 'æ' ,'œ',' ']
+#ABC=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y' ,'z' ,'ç', 'æ' ,'œ',' ']#frances
+ABC=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y' ,'z','ß',' ']#aleman
 ##DEFINIMOS PAREJAS,TERCIAS Y CUARTETO
 parejas = [''.join(i) for i in itertools.product(ABC, repeat = 2)]
 tercias= [''.join(i) for i in itertools.product(ABC, repeat = 3)]
