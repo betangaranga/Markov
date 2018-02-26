@@ -12,6 +12,8 @@ entro_mark_1=[]
 parejas=[]
 rep_mark_2=[]
 prob_mark_2=[]
+prob_ini_2=[]
+entro_mark_2=[]
 tercias=[]
 texto_general=file.read()
 ftranslator = str.maketrans(fUp,fLow)
@@ -51,7 +53,9 @@ for pareja in parejas:
     index=ABC.index(letra)
     index2=parejas.index(pareja)
     try:
-        proba=probabilidades[index]*prob_mark_1[index2]*math.log((1/prob_mark_1[index2]),2)
+        pr=probabilidades[index]*prob_mark_1[index2]
+        proba=pr*math.log((1/prob_mark_1[index2]),2)
+        prob_ini_2.append(pr)
     except ZeroDivisionError:
         proba=0
     entro_mark_1.append(proba)
@@ -72,9 +76,19 @@ for letra  in ABC:
                     except ZeroDivisionError:
                         prob_mark_2.append(0)
 
+for tercia in tercias:
+    letras=tercia[0]+tercia[1]
+    index2=tercias.index(tercia)
+    for pareja in parejas:
+        index=parejas.index(letras)
+        try:
+            proba=prob_ini_2[index]*prob_mark_2[index2]*math.log((1/prob_mark_2[index2]),2)
+        except ZeroDivisionError:
+            proba=0
+    entro_mark_2.append(proba)
 
-print(len(prob_mark_1))
-print(len(prob_mark_2))
+#print(len(prob_mark_1))
+print((sum(entro_mark_2)))
 
 #print("Entropia de una fuente sin memoria : {} bytes".format(sum(entropias)))
 #print("Primera de Markov : {} bytes".format(sum(entro_mark_1)))#ENTROPIA  PRIMERA DE MARKOV
